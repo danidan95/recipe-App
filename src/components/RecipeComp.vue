@@ -14,17 +14,20 @@
     </div>
     <button type="submit">Add recipe</button>
   </form>
-  <div
-      class="dd-recipe-done"
-      v-for="(r, index) of recipes" :key="r.id">
-        <div>
-          <h1>{{ r.name }}</h1>
-          <h2>Ingredients: <div class="content">{{ r.ingredients }}</div> </h2>
-
-          <h2>Steps: <div class="content">{{ r.steps }}</div> </h2>
-
-          <button type="button" @click="deleteRecipe(index)">Delete</button>
-        </div>
+  <div class="dd-recipe-done">
+      <table>
+        <tr v-if="recipes.length > 0">
+          <th>Name</th>
+          <th>Ingredients</th>
+          <th>Steps</th>
+        </tr>
+        <tr v-for="(r, index) of recipes" :key="r.id">
+          <td> <h1>{{ r.name }}</h1> </td>
+          <td><div class="content">{{ r.ingredients }}</div></td>
+          <td><div class="content">{{ r.steps }}</div></td>
+          <td> <button class="dd-delete-btn" type="button" @click="deleteRecipe(index)">Delete</button> </td>
+        </tr>
+      </table>
   </div>
 </template>
 
@@ -80,6 +83,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 50px;
 }
 
 label {
@@ -96,5 +100,9 @@ input {
 textarea {
   margin: 20px;
   width: 200px;
+}
+
+.dd-delete-btn {
+  margin: 20px;
 }
 </style>
